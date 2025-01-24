@@ -30,5 +30,6 @@
             }
         }
     %>
+    <button onclick="location.href='/'">Main page</button>
 </body>
 </html>
