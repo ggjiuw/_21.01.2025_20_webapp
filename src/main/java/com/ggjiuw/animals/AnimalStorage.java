@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,14 +27,18 @@ public class AnimalStorage {
         save();
     }
 
-    public static synchronized void initStorage() throws IOException {
+    public static synchronized void initStorage() {
         if (collection != null)
             return;
 
         Path animalsFile = Paths.get(file);
 
         if (!Files.exists(animalsFile))
-            Files.createFile(animalsFile);
+            try {
+                Files.createFile(animalsFile);
+            } catch (IOException e) {
+                System.out.println("[DBG/createFile]: idk critical err");
+            }
 
         try {
             byte[] bytes = Files.readAllBytes(animalsFile);
