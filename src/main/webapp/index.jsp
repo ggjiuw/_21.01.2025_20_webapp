@@ -17,5 +17,11 @@
     <h1>Welcome to My Web App!</h1>
     <p>This is the index page.</p>
 
+    <%
+        if (s != null)
+            out.println("<button onclick=\"location.href='/animals'\">Animals page</button>");
+    %>
+
+
 </body>
 </html>
