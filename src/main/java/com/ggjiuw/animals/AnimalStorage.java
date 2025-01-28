@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +26,17 @@ public class AnimalStorage {
         save();
     }
 
-    public static synchronized void initStorage() {
+    public static synchronized void initStorage() throws IOException {
         if (collection != null)
             return;
 
+        Path animalsFile = Paths.get(file);
+
+        if (!Files.exists(animalsFile))
+            Files.createFile(animalsFile);
+
         try {
-            byte[] bytes = Files.readAllBytes(Paths.get(file));
+            byte[] bytes = Files.readAllBytes(animalsFile);
             ObjectMapper objM = new ObjectMapper();
             collection = objM.readValue(bytes, AnimalsCollection.class);
         } catch (IOException e) {
