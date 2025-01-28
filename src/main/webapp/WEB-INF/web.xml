@@ -15,6 +15,10 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.ggjiuw.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AnimalServlet</servlet-name>
+        <servlet-class>com.ggjiuw.AnimalsServlet</servlet-class>
+    </servlet>
 
 
 
@@ -26,6 +30,11 @@
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AnimalServlet</servlet-name>
+        <url-pattern>/animals</url-pattern>
     </servlet-mapping>
 
 
